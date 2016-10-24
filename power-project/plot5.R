@@ -1,8 +1,14 @@
 plot5 <- function(){
   library(dplyr)
   #Reading the RDS data into a vector
-  NEI <- readRDS("summarySCC_PM25.rds")
-  SCC <- readRDS("Source_Classification_Code.rds")
+  if(!exists("NEI")){
+    NEI <- readRDS("./exdata_data_NEI_data/summarySCC_PM25.rds")
+  }
+  
+  if (!exists("SCC")){
+    SCC <- readRDS("Source_Classification_Code.rds")
+  }
+  
   #Renaming Emissions column Name
   NEI <- rename(NEI, PM=Emissions)
   

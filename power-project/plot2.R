@@ -1,7 +1,11 @@
 plot2 <- function(){
   library(dplyr)
   #Reading the RDS data into a vector
-  NEI <- readRDS("summarySCC_PM25.rds")
+  if(!exists("NEI")){
+    NEI <- readRDS("./exdata_data_NEI_data/summarySCC_PM25.rds")
+  }
+  
+
   #SCC <- readRDS("Source_Classification_Code.rds")
   #Renaming Emissions column Name
   NEI <- rename(NEI, PM=Emissions)
@@ -24,6 +28,8 @@ plot2 <- function(){
        xlab="Year", main = expression("Baltimore City's Total PM"[2.5]*" Emissions(1999 - 2008)"), 
        pch=19, col="purple")              
   lines(NEI_bwi_PM, x=rownames(NEI_bwi_PM), pch=16, col="blue")
+  
+
   
   dev.off()
   
