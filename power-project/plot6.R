@@ -3,7 +3,7 @@ plot6 <- function(){
   library(ggplot2)
   #Reading the RDS data into a vector
   if(!exists("NEI")){
-    NEI <- readRDS("./exdata_data_NEI_data/summarySCC_PM25.rds")
+    NEI <- readRDS("summarySCC_PM25.rds")
   }
   
   if (!exists("SCC")){
@@ -38,7 +38,9 @@ plot6 <- function(){
         xlab = "Year", ylab=expression("Motor Vehicle PM"[2.5]*"Emissions"),
         main = expression("LA and BAL Cities Vehicle PM"[2.5] *" Emissions (1999 - 2008)"))
         
-  
+  #Alternate #1, 
+  #g <- ggplot(NEI_bwi_lax_auto, aes(year, PM, fill=County))
+  #g+geom_bar(stat="identity",fill="blue",width=0.75) + facet_grid(. ~ County) + ggtitle("Emissions from motor Vehicles Baltmore vs LA")
   dev.off()
   
   

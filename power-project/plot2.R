@@ -2,7 +2,7 @@ plot2 <- function(){
   library(dplyr)
   #Reading the RDS data into a vector
   if(!exists("NEI")){
-    NEI <- readRDS("./exdata_data_NEI_data/summarySCC_PM25.rds")
+    NEI <- readRDS("summarySCC_PM25.rds")
   }
   
 

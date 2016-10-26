@@ -2,7 +2,7 @@ plot1 <- function(){
   library(dplyr)
   #Reading the RDS data into a vector
   if(!exists("NEI")){
-    NEI <- readRDS("./exdata_data_NEI_data/summarySCC_PM25.rds")
+    NEI <- readRDS("summarySCC_PM25.rds")
   }
   
 
@@ -16,7 +16,9 @@ plot1 <- function(){
   #Summarizing the PM data grouping by year
   NEI_PM <- tapply(NEI_sum$PM, NEI_sum$year, sum) #Creates a num list vector
   #aggTotalByYear <- aggregate(PM ~ year, NEI, sum) #Creates a data frame
-  #year_ag <- aggregate(Emissions~year,data = NEI,FUN=sum)
+  #year_ag 		  <- aggregate(Emissions~year,data = NEI,FUN=sum)
+  # Emissions <- aggregate(NEI$Emissions, by=list(NEI$year), FUN=sum) # Another way of using aggregate
+
   
   
   #Setting the parameters for plotting
@@ -36,6 +38,12 @@ plot1 <- function(){
   #       xlab = "Year", ylab = expression("Total PM"[2.5] *" Emissions"), 
   #      main=expression('Total PM'[2.5]*' emissions at various years'))
   #=================****************************************====================
+  barplot((Emissions[,2]/10^6), #10^2 sets the y scale to 10000, 20000 etc instead of 0e+00, 1e+00 etc..,
+  names.arg=Emissions[,1], # Names of X-axis
+  main=expression('Total Emission of PM2.5'),
+        xlab='Year', ylab=('PM2.5 (10^6 tons)'))
+
+  
   
   dev.off()
   

@@ -3,7 +3,7 @@ plot3 <- function(){
   library(ggplot2)
   #Reading the RDS data into a vector
   if(!exists("NEI")){
-    NEI <- readRDS("./exdata_data_NEI_data/summarySCC_PM25.rds")
+    NEI <- readRDS("summarySCC_PM25.rds")
   }
   
 
@@ -29,8 +29,12 @@ plot3 <- function(){
         main = expression("Baltimore City's Total PM"[2.5] *"Emissions-Type Wise"))
   
   #Using ggplot
+  #Alternate #1
   #ggplot(sm,aes(x=year,y=PM,group=type,colour=type))+geom_line()
-  
+  #Alternate #2
+  #g <- ggplot(NEI_bwi, aes(year, PM))
+  #g+geom_bar(stat="identity",fill="blue",width=0.75)+theme_bw() + guides(fill=FALSE)+facet_grid(. ~ type) + 
+  #ggtitle("Baltimore City Emission by source") + theme(axis.text.x=element_text(angle=50, size=10, vjust=0.5))
   
   dev.off()
   
